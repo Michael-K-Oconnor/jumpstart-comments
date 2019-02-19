@@ -1,0 +1,41 @@
+{
+  "name": "jumpstart-comments-service",
+  "version": "1.0.0",
+  "description": "Comments service for Jumpstart App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "knex-rollback": "knex --knexfile ./db/knexfile.js migrate:rollback",
+    "knex-migrate": "knex --knexfile ./db/knexfile.js migrate:latest",
+    "knex-seed": "knex --knexfile ./db/knexfile.js seed:run",
+    "knex-remake": "knex --knexfile ./db/knexfile.js migrate:rollback && knex --knexfile ./db/knexfile.js migrate:latest && knex --knexfile ./db/knexfile.js seed:run"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Michael-K-Oconnor/jumpstart-comments-service.git"
+  },
+  "author": "Michael O'Connor",
+  "license": "ISC",
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "knex": "^0.16.3",
+    "morgan": "^1.9.1",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.15.3"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+scripts
+
+Dockerfile*
+docker-compose*
+.dockerignore
+
+.git
+.gitignore
+.env*
+.eslint*
+.DS_Store
+Makefile
+README.md
