@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 const app = express();
-
 const db = require('../db/db.js');
 
 const asyncMiddleware = fn => (req, res, next) => {
