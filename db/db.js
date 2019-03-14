@@ -1,12 +1,12 @@
 const db = require('./knex');
 
-const getComments = project_id =>
+const getComments = projectId =>
   db('comments')
     .select()
-    .where({ project_id });
+    .where({ projectId });
 
-const postComment = ({ project_id, user_id, username, comment }) =>
-  db('comments').insert({ project_id, user_id, username, comment });
+const postComment = ({ projectId, userId, username, comment }) =>
+  db('comments').insert({ projectId, userId, username, comment });
 
 module.exports = {
   getComments,

@@ -15,9 +15,9 @@ app.use(helmet());
 app.use(bodyParser.json());
 
 app.get(
-  '/api/comments/:project_id',
+  '/api/comments/:projectId',
   asyncMiddleware(async (req, res) => {
-    const result = await db.getComments(req.params.project_id);
+    const result = await db.getComments(req.params.projectId);
     res.json(result);
   })
 );
