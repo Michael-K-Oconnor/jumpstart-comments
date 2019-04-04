@@ -4,20 +4,16 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const convertToCamel = result => {
   if (Array.isArray(result)) {
     return result.map(row => convertToCamel(row));
-  } else {
-    let convertedRow = {};
-    Object.keys(result).forEach(key => {
-      let convertedKey = key.replace(/_(\w)/g, m => m[1].toUpperCase());
-      convertedRow[convertedKey] = result[key];
-    });
-    return convertedRow;
   }
+  const convertedRow = {};
+  Object.keys(result).forEach(key => {
+    const convertedKey = key.replace(/_(\w)/g, m => m[1].toUpperCase());
+    convertedRow[convertedKey] = result[key];
+  });
+  return convertedRow;
 };
 
-const convertToSnakeCase = value =>
-  value.replace(/([A-Z])/g, function($1) {
-    return '_' + $1.toLowerCase();
-  });
+const convertToSnakeCase = value => value.replace(/([A-Z])/g, char => `_${char.toLowerCase()}`);
 
 module.exports = {
   development: {
@@ -45,9 +41,9 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'jumpstartprojects',
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      host: process.env.DB_HOST
+      user: 'admin',
+      password: 'admin',
+      host: 'db-projects'
     },
     wrapIdentifier: (value, origImpl) => origImpl(convertToSnakeCase(value)),
     postProcessResponse: result => convertToCamel(result),
