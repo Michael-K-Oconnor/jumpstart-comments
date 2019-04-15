@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -10,7 +11,10 @@ const asyncMiddleware = fn => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors());
+  app.use(morgan('dev'));
+}
 app.use(helmet());
 app.use(bodyParser.json());
 
